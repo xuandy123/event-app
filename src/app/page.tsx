@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Head>
         <title>EventAlert - Never Miss an Event Again</title>
-        <meta name="description" content="Get weekly event notifications straight to your phone" />
+        <meta name="description" content="Get weekly event notifications straight to your phone!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
