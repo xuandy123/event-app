@@ -1,45 +1,59 @@
 import { FC } from 'react';
-import { ArrowRight } from 'lucide-react';
+import SubscriptionForm from './SubscriptionForm';
 
 const Hero: FC = () => {
   return (
-    <section className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mb-10 md:mb-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
-            Never Miss <span className="text-purple-600">Another Event</span> Again
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Get weekly notifications about the hottest events happening around you, delivered straight to your phone.
-          </p>
-          <a 
-            href="#subscribe" 
-            className="inline-flex items-center bg-purple-600 text-white px-8 py-3 rounded-md hover:bg-purple-700 transition text-lg font-medium"
-          >
-            Get Started <ArrowRight className="ml-2" size={20} />
-          </a>
+    <main className="bg-white text-black p-4 py-16 flex flex-col items-center justify-center md:flex-row md:justify-around">
+      {/* Left Section */}
+      <div className="max-w-lg space-y-6">
+        <div className="bg-red-100 text-red-700 px-3 py-1 rounded-full inline-block text-sm font-semibold">
+          Chicago&apos;s Weekly Text Guide
         </div>
-        <div className="md:w-1/2 flex justify-center">
-          <div className="relative w-64 h-96 bg-gray-200 rounded-3xl shadow-lg overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-8 bg-gray-300 flex items-center justify-center">
-              <div className="w-16 h-4 bg-gray-400 rounded-full"></div>
-            </div>
-            <div className="pt-12 px-4">
-              <div className="bg-white p-4 rounded-lg mb-3 shadow">
-                <p className="text-sm font-medium text-purple-600">ALERT</p>
-                <p className="text-lg font-medium">Jazz Festival this weekend!</p>
-                <p className="text-xs text-gray-500">Tap for details</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg mb-3 shadow">
-                <p className="text-sm font-medium text-purple-600">ALERT</p>
-                <p className="text-lg font-medium">Food Truck Rally tomorrow</p>
-                <p className="text-xs text-gray-500">Tap for details</p>
-              </div>
-            </div>
+        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+          Your Weekly Text For Chicago&apos;s Best
+        </h1>
+        <ul className="space-y-3">
+          <li>📅 1 weekly text that puts you on to the best of Chicago</li>
+          <li>🎭 A curated list of the best upcoming events</li>
+          <li>🍹 The best food and drinks that you need to try</li>
+          <li>🎁 Free drinks, prizes, and nightlife perks</li>
+        </ul>
+
+        <SubscriptionForm />
+
+        <p className="text-sm text-gray-500">
+          No spam. Unsubscribe anytime. Standard message rates may apply.
+        </p>
+      </div>
+
+      {/* Right Section */}
+      <div className="bg-gray-100 shadow-lg rounded-2xl p-6 mt-12 md:mt-0 max-w-md w-full">
+        <div className="text-red-600 font-bold text-lg">ChiText</div>
+        <div className="text-gray-500 text-sm">Friday, 2:00 PM</div>
+
+        <div className="mt-4 space-y-4">
+          <div>
+            <span className="font-bold">ChiText Weekly:</span> This weekend in Chicago! 🏙️
+          </div>
+          <div>
+            🍽️ <span className="font-bold">EAT:</span> The new Portillo&apos;s pop-up in Wicker Park is serving Italian beef egg rolls that are breaking the internet.
+          </div>
+          <div>
+            🍹 <span className="font-bold">DRINK:</span> Rooftop season is here! Cindy’s at the Chicago Athletic Association has new spring cocktails with skyline views.
+          </div>
+          <div>
+            🎭 <span className="font-bold">DO:</span> The Randolph Street Market is back this Sat-Sun with 300+ vendors, food trucks, and live music. Use code CHITEXT for $5 off admission.
+          </div>
+          <div>
+            📰 <span className="font-bold">NEWS:</span> The 606 trail extension breaks ground next week, adding 1.5 miles to the popular elevated path.
           </div>
         </div>
+
+        <p className="text-xs text-gray-500 mt-4">
+          Reply STOP to unsubscribe or HELP for help.
+        </p>
       </div>
-    </section>
+      </main>
   );
 };
 
