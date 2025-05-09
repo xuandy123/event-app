@@ -13,7 +13,7 @@ const Header: FC = () => {
 
   return (
     <header className="sticky top-0 z-10 bg-white shadow-sm">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <div className="text-red-600 w-6 h-6">
