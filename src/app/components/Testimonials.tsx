@@ -17,7 +17,7 @@ const Testimonial: FC<TestimonialProps> = ({ quote, name, location }) => {
         ))}
       </div>
 
-      <p className="mt-4 text-gray-700 text-base">&quot{quote}&quot</p>
+      <p className="mt-4 text-gray-700 text-base">&quot;{quote}&quot;</p>
 
       <div className="mt-6 flex items-center">
         <div className="flex-shrink-0">
