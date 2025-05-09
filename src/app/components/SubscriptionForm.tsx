@@ -39,7 +39,7 @@ const SubscriptionForm: FC = () => {
       <button
         type="submit"
         onClick={() => handleSubmit}
-        className="w-full bg-red-600 text-white py-2 rounded font-semibold hover:bg-red-700"
+        className="w-full bg-red-600 text-white py-2 rounded font-semibold hover:bg-red-700 hover:cursor-pointer"
       >
         Get Started →
       </button>
