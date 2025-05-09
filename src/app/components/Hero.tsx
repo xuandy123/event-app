@@ -1,5 +1,6 @@
-import { FC } from 'react';
-import SubscriptionForm from './SubscriptionForm';
+import { FC } from "react";
+import SubscriptionForm from "./SubscriptionForm";
+import { APP_NAME } from "../constants";
 
 const Hero: FC = () => {
   return (
@@ -28,24 +29,33 @@ const Hero: FC = () => {
 
       {/* Right Section */}
       <div className="bg-gray-100 shadow-lg rounded-2xl p-6 mt-12 md:mt-0 max-w-md w-full">
-        <div className="text-red-600 font-bold text-lg">ChiText</div>
+        <div className="text-red-600 font-bold text-lg">{APP_NAME}</div>
         <div className="text-gray-500 text-sm">Friday, 2:00 PM</div>
 
         <div className="mt-4 space-y-4">
           <div>
-            <span className="font-bold">ChiText Weekly:</span> This weekend in Chicago! 🏙️
+            <span className="font-bold">{APP_NAME} Weekly:</span> This weekend
+            in Chicago! 🏙️
           </div>
           <div>
-            🍽️ <span className="font-bold">EAT:</span> The new Portillo&apos;s pop-up in Wicker Park is serving Italian beef egg rolls that are breaking the internet.
+            🍽️ <span className="font-bold">EAT:</span> The new Portillo&apos;s
+            pop-up in Wicker Park is serving Italian beef egg rolls that are
+            breaking the internet.
           </div>
           <div>
-            🍹 <span className="font-bold">DRINK:</span> Rooftop season is here! Cindy’s at the Chicago Athletic Association has new spring cocktails with skyline views.
+            🍹 <span className="font-bold">DRINK:</span> Rooftop season is here!
+            Cindy’s at the Chicago Athletic Association has new spring cocktails
+            with skyline views.
           </div>
           <div>
-            🎭 <span className="font-bold">DO:</span> The Randolph Street Market is back this Sat-Sun with 300+ vendors, food trucks, and live music. Use code CHITEXT for $5 off admission.
+            🎭 <span className="font-bold">DO:</span> The Randolph Street Market
+            is back this Sat-Sun with 300+ vendors, food trucks, and live music.
+            Use code {APP_NAME} for $5 off admission.
           </div>
           <div>
-            📰 <span className="font-bold">NEWS:</span> The 606 trail extension breaks ground next week, adding 1.5 miles to the popular elevated path.
+            📰 <span className="font-bold">NEWS:</span> The 606 trail extension
+            breaks ground next week, adding 1.5 miles to the popular elevated
+            path.
           </div>
         </div>
 
@@ -53,7 +63,7 @@ const Hero: FC = () => {
           Reply STOP to unsubscribe or HELP for help.
         </p>
       </div>
-      </main>
+    </main>
   );
 };
 

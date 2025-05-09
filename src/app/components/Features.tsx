@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { CalendarDays, UtensilsCrossed, Newspaper } from "lucide-react";
+import { APP_NAME } from "../constants";
 
 export interface FeatureItem {
   icon: React.ReactNode;
@@ -33,7 +34,7 @@ const Features: FC = () => {
     <section id="features" className="py-20 bg-blue-50">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-4xl font-bold text-gray-900 mb-4">
-          Why ChiText?
+          Why {APP_NAME}?
         </h1>
         <p className="text-gray-600 mb-12">
           Stay in the know about everything Chicago has to offer
