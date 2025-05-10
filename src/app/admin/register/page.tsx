@@ -25,7 +25,7 @@ export default function AuthForm() {
         });
 
         if (res?.ok) {
-          router.push("/dashboard"); // Change to your protected page
+          router.push("/admin/dashboard"); // Change to your protected page
         } else {
           alert("Invalid credentials");
         }
