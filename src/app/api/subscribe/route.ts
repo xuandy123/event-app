@@ -1,4 +1,5 @@
 import { executePublicApi } from "@/app/helpers/api-response";
+import { sendIntroText } from "@/lib/twilio";
 import { SubscribeRequest, SubscribeResponse } from "@/types/schema";
 import { PrismaClient } from "@prisma/client";
 
@@ -9,16 +10,19 @@ export const POST = executePublicApi<
 >(SubscribeRequest, async (req, body) => {
   const { phone } = body;
   try {
-    await prisma.user.create({
+    await prisma.subscriber.create({
       data: {
-        phone: parseInt(phone), 
+        phone: parseInt(phone),
       },
     });
+
+    const fakephone = "18777804236";
+    await sendIntroText(`+1${fakephone}`); // Ensure correct format!
   } catch (err) {
     console.log(err);
     return {
-      success: false
-    }
+      success: false,
+    };
   }
   return {
     success: true,

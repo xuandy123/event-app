@@ -13,21 +13,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum UserStatus {
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  password      String
+  emailVerified DateTime?
+  image         String?
+  sessions      Session[]
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+enum SubscriberStatus {
   ACTIVE
   SUSPENDED
   CANCELED
 }
 
-model User {
-  id              String     @id @default(cuid())
-  phone           BigInt     @unique
-  phoneVerified   Boolean    @default(false)
+model Subscriber {
+  id              String           @id @default(cuid())
+  phone           BigInt           @unique
+  phoneVerified   Boolean          @default(false)
   firstName       String?
   lastName        String?  
-  email           String?    @unique
-  status          UserStatus @default(ACTIVE)
-  metadata        UserMetadata?
+  email           String?          @unique
+  status          SubscriberStatus @default(ACTIVE)
+  metadata        SubscriberMetadata?
 }
 
 enum Sources {
@@ -42,15 +73,15 @@ enum Sources {
   Other
 }
 
-model UserMetadata {
-  id                 String   @id @default(cuid())
-  age                Int?
-  preferences        Json?
-  neighbourhood      String?
-  feedback           String?
-  referral           Sources?
-  userId             String   @unique
-  user               User     @relation(fields: [userId], references: [id])
+model SubscriberMetadata {
+  id                       String   @id @default(cuid())
+  age                      Int?
+  preferences              Json?
+  neighbourhood            String?
+  feedback                 String?
+  referral                 Sources?
+  subscriberId             String   @unique
+  subscriber               Subscriber     @relation(fields: [subscriberId], references: [id])
 }
 
 model Events {
