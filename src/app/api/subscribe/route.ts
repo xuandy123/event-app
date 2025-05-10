@@ -15,6 +15,7 @@ export const POST = executePublicApi<
       },
     });
   } catch (err) {
+    console.log(err);
     return {
       success: false
     }

@@ -34,7 +34,7 @@ const SubscriptionForm: FC = () => {
       setSubmitted(true);
       setError("");
       console.log("Subscribed user ID:", data.userId);
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
       setError("Subscription failed. Please try again.");
     }
@@ -61,7 +61,7 @@ const SubscriptionForm: FC = () => {
         Get Started →
       </button>
 
-      {submitted && <p className="text-green-600">You're subscribed!</p>}
+      {submitted && <p className="text-green-600">You&apos;re subscribed!</p>}
       {error && <p className="text-red-600">{error}</p>}
     </form>
   );
