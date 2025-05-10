@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  CANCELED
+}
+
+model User {
+  id              String     @id @default(cuid())
+  phone           BigInt     @unique
+  phoneVerified   Boolean    @default(false)
+  firstName       String?
+  lastName        String?  
+  email           String?    @unique
+  status          UserStatus @default(ACTIVE)
+  metadata        UserMetadata?
+}
+
+enum Sources {
+  Instagram
+  X
+  TikTok
+  Friend
+  Google
+  Newsletter
+  Facebook
+  Reddit
+  Other
+}
+
+model UserMetadata {
+  id                 String   @id @default(cuid())
+  age                Int?
+  preferences        Json?
+  neighbourhood      String?
+  feedback           String?
+  referral           Sources?
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id])
+}
+
+model Events {
+  id               String   @id @default(cuid())
+  info             String
+  headerImage      String[]
+  when             DateTime
+  where            String[]
+  Price            String
+  instagram        String?
+  tiktok           String?
+  facebook         String?
+  details          String
+  expect           Json
+}
