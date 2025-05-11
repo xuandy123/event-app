@@ -86,11 +86,13 @@ model SubscriberMetadata {
 
 model Events {
   id               String   @id @default(cuid())
+  name             String
   info             String
   headerImage      String[]
-  when             DateTime
-  where            String[]
-  Price            String
+  startTime        DateTime
+  endTime          DateTime
+  where            String
+  price            String
   instagram        String?
   tiktok           String?
   facebook         String?

@@ -23,7 +23,9 @@ const Hero: FC = () => {
         <SubscriptionForm />
 
         <p className="text-sm text-gray-500">
-          By signing up for {APP_NAME} you consent to receive text messages from {APP_NAME} and other automated marketing messages. Msg and data rates apply.
+          By signing up for {APP_NAME} you consent to receive text messages from{" "}
+          {APP_NAME} and other automated marketing messages. Msg and data rates
+          apply.
         </p>
       </div>
 
