@@ -1,6 +1,22 @@
 import { z } from "zod";
 import { Events } from "@prisma/client";
 
+export type EventFormData = {
+  id: string;
+  name: string;
+  info: string;
+  headerImage: string[];
+  startTime: string;
+  endTime: string;
+  where: string;
+  price: string;
+  instagram: string;
+  tiktok: string;
+  facebook: string;
+  details: string;
+  expect: { title: string; description: string }[];
+};
+
 export const SubscribeRequest = z.object({
   phone: z.string(),
 });

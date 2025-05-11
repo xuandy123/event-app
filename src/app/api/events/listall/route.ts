@@ -1,8 +1,11 @@
 import { prisma } from "@/lib/prisma";
-import { executeApi } from "@/app/helpers/api-response";
+import { executePublicApi } from "@/app/helpers/api-response";
 import { GetEventsRequest, GetEventsResponse } from "@/types/schema";
 
-export const POST = executeApi<GetEventsResponse, typeof GetEventsRequest>(
+export const POST = executePublicApi<
+  GetEventsResponse,
+  typeof GetEventsRequest
+>(
   GetEventsRequest, // Request validation schema
   async () => {
     // Fetch events from the database

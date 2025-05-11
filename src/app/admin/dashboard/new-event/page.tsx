@@ -1,7 +1,7 @@
 "use client";
 
+import { EventFormData } from "@/types/schema";
 import EventForm from "../components/EventForm";
-import { EventFormData } from "../components/EventForm";
 
 export default function NewEventPage() {
   const handleCreate = async (data: EventFormData) => {

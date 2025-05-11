@@ -1,9 +1,9 @@
-import { executeApi } from "@/app/helpers/api-response";
+import { executePublicApi } from "@/app/helpers/api-response";
 import { GetEventRequest, GetEventResponse } from "@/types/schema";
 
 import { prisma } from "@/lib/prisma";
 
-export const POST = executeApi<GetEventResponse, typeof GetEventRequest>(
+export const POST = executePublicApi<GetEventResponse, typeof GetEventRequest>(
   GetEventRequest,
   async (req, body) => {
     const { id } = body;

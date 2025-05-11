@@ -15,13 +15,15 @@ const Header: FC = () => {
     <header className="sticky top-0 z-10 bg-white shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <div className="text-red-600 w-6 h-6">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-            </svg>
-          </div>
-          <span className="text-xl font-bold">{APP_NAME}</span>
+        <div className="">
+          <Link href={"/"} className="flex items-center space-x-2">
+            <div className="text-red-600 w-6 h-6">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+              </svg>
+            </div>
+            <span className="text-xl font-bold">{APP_NAME}</span>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}

@@ -3,21 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import EventForm from "../../components/EventForm";
-
-type EventFormData = {
-  name: string;
-  info: string;
-  headerImage: string[];
-  startTime: string;
-  endTime: string;
-  where: string;
-  price: string;
-  instagram: string;
-  tiktok: string;
-  facebook: string;
-  details: string;
-  expect: { title: string; description: string }[];
-};
+import { EventFormData } from "@/types/schema";
 
 export default function EditEventPage() {
   const { id } = useParams();

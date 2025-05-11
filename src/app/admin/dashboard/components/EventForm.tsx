@@ -1,23 +1,9 @@
 "use client";
 
+import { EventFormData } from "@/types/schema";
 import { useState, FormEvent } from "react";
 
 type Expectation = { title: string; description: string };
-
-export type EventFormData = {
-  name: string;
-  info: string;
-  headerImage: string[];
-  startTime: string;
-  endTime: string;
-  where: string;
-  price: string;
-  instagram: string;
-  tiktok: string;
-  facebook: string;
-  details: string;
-  expect: Expectation[];
-};
 
 type EventFormProps = {
   initialData?: EventFormData;
