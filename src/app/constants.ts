@@ -1,1 +1,1 @@
-export const APP_NAME = "ChiBuzz";
+export const APP_NAME = "Dibs Chicago";
