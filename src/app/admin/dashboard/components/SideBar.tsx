@@ -3,6 +3,7 @@
 import { CalendarClock, Settings, LogOut, CalendarPlus2 } from "lucide-react";
 import React from "react";
 import { signOut } from "next-auth/react";
+import { APP_NAME } from "@/app/constants";
 
 interface ResponsiveDrawerProps {
   children: React.ReactNode;
@@ -37,7 +38,7 @@ const ResponsiveDrawer: React.FC<ResponsiveDrawerProps> = ({ children }) => {
                 <details open>
                   <summary>
                     <Settings />
-                    Shorts Generator
+                    {APP_NAME}
                   </summary>
                   <ul>
                     <li>

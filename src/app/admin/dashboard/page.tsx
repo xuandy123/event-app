@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import EventCard from "@/app/components/EventCard";
+import EventCard from "./components/EventCard";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen p-6 bg-base-200">
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full">
         <h1 className="text-3xl font-bold mb-6">My Events</h1>
 
         {loading ? (
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
         ) : events.length === 0 ? (
           <div className="text-center text-lg">No events found.</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-wrap gap-8">
             {events.map((event) => (
               <EventCard
                 key={event.id}

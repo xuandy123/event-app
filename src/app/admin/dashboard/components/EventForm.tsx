@@ -51,7 +51,13 @@ export default function EventForm({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "startTime" || name === "endTime") {
+      // Convert local datetime to ISO with Z (UTC)
+      const iso = new Date(value).toISOString();
+      setFormData((prev) => ({ ...prev, [name]: iso }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleArrayChange = (

@@ -1,6 +1,16 @@
 "use client";
 
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+interface Expectation {
+  title: string;
+  description: string;
+}
 
 interface Event {
   id: string;
@@ -15,6 +25,7 @@ interface Event {
   tiktok?: string;
   facebook?: string;
   details: string;
+  expect?: Expectation[];
 }
 
 interface EventCardProps {
@@ -31,16 +42,25 @@ export default function EventCard({
   onDelete,
 }: EventCardProps) {
   return (
-    <div className="card bg-white shadow-md border rounded-xl overflow-hidden">
-      {event.headerImage?.[0] && (
-        <figure>
-          <img
-            src={event.headerImage[0]}
-            alt="Event Header"
-            className="w-full h-48 object-cover"
-          />
-        </figure>
+    <div className="card max-w-[400px] bg-white shadow-md border rounded-xl overflow-hidden">
+      {event.headerImage?.length > 0 && (
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          className="w-full h-48 rounded-xl overflow-hidden"
+        >
+          {event.headerImage.map((url, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={url}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-48 object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       )}
+
       <div className="card-body">
         <h2 className="card-title">{event.name}</h2>
         <p>{event.info}</p>
@@ -61,6 +81,19 @@ export default function EventCard({
           <strong>Where:</strong>{" "}
           {Array.isArray(event.where) ? event.where.join(", ") : event.where}
         </p>
+
+        {event.expect && event.expect.length > 0 && (
+          <div className="mt-4">
+            <h3 className="font-semibold mb-2">What to Expect:</h3>
+            <ul className="list-disc list-inside space-y-2">
+              {event.expect.map((item, index) => (
+                <li key={index}>
+                  <strong>{item.title}:</strong> {item.description}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="mt-2 space-x-2">
           {event.instagram && (
