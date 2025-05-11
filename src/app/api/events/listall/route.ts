@@ -10,7 +10,7 @@ export const POST = executePublicApi<
   async () => {
     // Fetch events from the database
     const events = await prisma.events.findMany({
-      orderBy: { startTime: "asc" }, // Optional: sort by start time (ascending)
+      orderBy: { startTime: "desc" }, // Optional: sort by start time (ascending)
     });
 
     // Return the events or an empty array if no events are found

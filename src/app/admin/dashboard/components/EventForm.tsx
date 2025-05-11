@@ -18,6 +18,7 @@ export default function EventForm({
 }: EventFormProps) {
   const [formData, setFormData] = useState<EventFormData>(
     initialData || {
+      id: "",
       name: "",
       info: "",
       headerImage: [""],
