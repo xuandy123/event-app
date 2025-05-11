@@ -13,7 +13,7 @@ interface Event {
   startTime: string; // Add startDate to handle event start date
   endTime: string; // Add endDate to handle event end date
   where: string[]; // Expecting an array of strings here
-  Price: string;
+  price: string;
   instagram?: string;
   tiktok?: string;
   facebook?: string;
@@ -86,7 +86,7 @@ export default function AdminDashboard() {
 
                   <p className="text-gray-700 mb-2">{event.details}</p>
                   <p className="text-sm">
-                    <strong>Price:</strong> {event.Price}
+                    <strong>Price:</strong> ${event.price}
                   </p>
 
                   {/* Check if `where` is an array before using .join() */}
