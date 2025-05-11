@@ -58,7 +58,7 @@ const SubscriptionForm: FC = () => {
         type="submit"
         className="w-full bg-red-600 text-white py-2 rounded font-semibold hover:bg-red-700 hover:cursor-pointer"
       >
-        Get Started →
+        Join for free
       </button>
 
       {submitted && <p className="text-green-600">You&apos;re subscribed!</p>}
