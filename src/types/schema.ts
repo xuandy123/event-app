@@ -44,3 +44,19 @@ export const GetEventsRequest = z.object({});
 export type GetEventsResponse = {
   events: Events[];
 };
+
+export const GetEventRequest = z.object({
+  id: z.string(),
+});
+
+export type GetEventResponse = {
+  event: Events;
+};
+
+export const DeleteEventRequest = z.object({
+  id: z.string(),
+});
+
+export type DeleteEventResponse = {
+  success: boolean;
+};

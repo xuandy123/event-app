@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 "use client";
 
+import EventCard from "@/app/components/EventCard";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface Event {
@@ -10,9 +11,9 @@ interface Event {
   info: string;
   headerImage: string[];
   when: string;
-  startTime: string; // Add startDate to handle event start date
-  endTime: string; // Add endDate to handle event end date
-  where: string[]; // Expecting an array of strings here
+  startTime: string;
+  endTime: string;
+  where: string[];
   price: string;
   instagram?: string;
   tiktok?: string;
@@ -24,6 +25,7 @@ interface Event {
 export default function AdminDashboard() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -33,7 +35,6 @@ export default function AdminDashboard() {
           body: JSON.stringify({}),
         });
         const data = await response.json();
-        console.log(data);
         setEvents(data.data.events || []);
       } catch (error) {
         console.error("Failed to load events:", error);
@@ -44,6 +45,29 @@ export default function AdminDashboard() {
 
     fetchEvents();
   }, []);
+
+  const handleDeleteEvent = async (id: string) => {
+    const confirmed = confirm("Are you sure you want to delete this event?");
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch("/api/events/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      if (res.ok) {
+        setEvents((prev) => prev.filter((event) => event.id !== id));
+        alert("Event deleted.");
+      } else {
+        alert("Failed to delete event.");
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert("An error occurred.");
+    }
+  };
 
   return (
     <div className="min-h-screen p-6 bg-base-200">
@@ -57,71 +81,15 @@ export default function AdminDashboard() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {events.map((event) => (
-              <div
+              <EventCard
                 key={event.id}
-                className="card bg-white shadow-md border rounded-xl overflow-hidden"
-              >
-                {event.headerImage?.[0] && (
-                  <figure>
-                    <img
-                      src={event.headerImage[0]}
-                      alt="Event Header"
-                      className="w-full h-48 object-cover"
-                    />
-                  </figure>
-                )}
-                <div className="card-body">
-                  <h2 className="card-title">{event.name}</h2>
-                  <p>{event.info}</p>
-
-                  {/* Display start and end date with formatted strings */}
-                  <p className="text-sm text-gray-500">
-                    <strong>Start:</strong>{" "}
-                    {new Date(event.startTime).toLocaleString()}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    <strong>End:</strong>{" "}
-                    {new Date(event.endTime).toLocaleString()}
-                  </p>
-
-                  <p className="text-gray-700 mb-2">{event.details}</p>
-                  <p className="text-sm">
-                    <strong>Price:</strong> ${event.price}
-                  </p>
-
-                  {/* Check if `where` is an array before using .join() */}
-                  <p className="text-sm">
-                    <strong>Where:</strong>{" "}
-                    {Array.isArray(event.where)
-                      ? event.where.join(", ")
-                      : event.where}
-                  </p>
-
-                  <div className="mt-2 space-x-2">
-                    {event.instagram && (
-                      <a
-                        href={event.instagram}
-                        className="btn btn-sm btn-outline"
-                      >
-                        Instagram
-                      </a>
-                    )}
-                    {event.tiktok && (
-                      <a href={event.tiktok} className="btn btn-sm btn-outline">
-                        TikTok
-                      </a>
-                    )}
-                    {event.facebook && (
-                      <a
-                        href={event.facebook}
-                        className="btn btn-sm btn-outline"
-                      >
-                        Facebook
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+                event={event}
+                editable={true}
+                onEdit={(id) =>
+                  router.push(`/admin/dashboard/edit-event/${id}`)
+                }
+                onDelete={(id) => handleDeleteEvent(id)}
+              />
             ))}
           </div>
         )}
