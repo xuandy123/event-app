@@ -28,7 +28,7 @@ export default function EventsPage() {
   }, []);
 
   return (
-    <div className="px-4 py-6 w-full">
+    <div className="px-4 py-6 w-full min-h-screen">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-primary">Week of</h2>
         <h1 className="text-5xl font-extrabold text-primary mb-4">

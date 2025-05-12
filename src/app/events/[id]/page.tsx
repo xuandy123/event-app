@@ -107,7 +107,7 @@ export default function EventDetailsPage() {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 min-h-screen">
       <h1 className="text-4xl font-extrabold text-primary mb-6">
         {event.name}
       </h1>

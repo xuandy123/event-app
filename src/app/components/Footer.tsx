@@ -4,7 +4,7 @@ import { APP_NAME } from "../constants";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="py-8 px-4">
+    <footer className="border-t border-gray-200 bg-gray-50 py-10 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
             >
               Contact Us
             </Link>
-            <p>© 2025 {APP_NAME}. All rights reserved.</p>
+            <p className="text-gray-500">© 2025 {APP_NAME}</p>
           </nav>
         </div>
       </div>

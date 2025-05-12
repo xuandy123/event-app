@@ -12,7 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "ChiBuzz - Never Miss an Event Again",
+  title: "DibsChicago - Never Miss an Event Again",
   description: "Get weekly event notifications straight to your phone!",
 };
 
