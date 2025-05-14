@@ -118,7 +118,7 @@ const SubscriptionForm: FC = () => {
   </div>
 </dialog>
 
-      {submitted && <p className="text-green-600 mt-4">You're subscribed!</p>}
+      {submitted && <p className="text-green-600 mt-4">You&apos;re subscribed!</p>}
     </>
   );
 };
