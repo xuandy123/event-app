@@ -4,6 +4,7 @@ import { FC, useState, FormEvent, ChangeEvent } from "react";
 
 const SubscriptionForm: FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [consent, setConsent] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
@@ -11,11 +12,15 @@ const SubscriptionForm: FC = () => {
     e.preventDefault();
 
     const cleanedPhone = phoneNumber.replace(/\D/g, "");
-
-    // Phone number validation
     const phoneRegex = /^\d{10}$/;
+
     if (!phoneRegex.test(cleanedPhone)) {
       setError("Please enter a valid 10-digit phone number");
+      return;
+    }
+
+    if (!consent) {
+      setError("You must agree to receive messages.");
       return;
     }
 
@@ -33,6 +38,7 @@ const SubscriptionForm: FC = () => {
       const data = await res.json();
       setSubmitted(true);
       setError("");
+      (document.getElementById("subscription_modal") as HTMLDialogElement)?.close();
       console.log("Subscribed user ID:", data.userId);
     } catch (err) {
       console.error(err);
@@ -44,26 +50,76 @@ const SubscriptionForm: FC = () => {
     setPhoneNumber(e.target.value);
   };
 
+  const handleConsentChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setConsent(e.target.checked);
+  };
+
+  const openModal = () => {
+    (document.getElementById("subscription_modal") as HTMLDialogElement)?.showModal();
+  };
+
   return (
-    <form className="space-y-4" onSubmit={handleSubmit}>
-      <input
-        type="tel"
-        placeholder="Phone Number (required)"
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        required
-        onChange={handlePhoneChange}
-        value={phoneNumber}
-      />
+    <>
       <button
-        type="submit"
+        type="button"
+        onClick={openModal}
         className="w-full bg-red-600 text-white py-2 rounded font-semibold hover:bg-red-700 hover:cursor-pointer"
       >
         Join for free
       </button>
 
-      {submitted && <p className="text-green-600">You&apos;re subscribed!</p>}
-      {error && <p className="text-red-600">{error}</p>}
+      <dialog id="subscription_modal" className="modal">
+  <div className="modal-box max-w-md p-6 bg-white rounded-2xl shadow-xl">
+    <h3 className="text-xl font-semibold text-gray-800 mb-4">Subscribe to Dibs Chicago</h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Get a weekly text with the best events, eats, and things to do in Chicago.
+    </p>
+
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <input
+        type="tel"
+        placeholder="Enter your phone number"
+        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
+        required
+        onChange={handlePhoneChange}
+        value={phoneNumber}
+      />
+
+      <label className="flex items-flex-start space-x-2 text-sm text-gray-700">
+        <input
+          type="checkbox"
+          className="checkbox"
+          checked={consent}
+          onChange={handleConsentChange}
+        />
+        <span>By checking this box, you agree to receive recurring SMS messages from Dibs Chicago. Message and data rates may apply. Reply STOP to unsubscribe.</span>
+      </label>
+
+      {error && <p className="text-red-600 text-sm">{error}</p>}
+
+      <div className="modal-action flex justify-between items-center">
+        <button
+          type="submit"
+          className="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+        >
+          Subscribe
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            (document.getElementById("subscription_modal") as HTMLDialogElement)?.close()
+          }
+          className="text-gray-500 hover:text-gray-700"
+        >
+          Cancel
+        </button>
+      </div>
     </form>
+  </div>
+</dialog>
+
+      {submitted && <p className="text-green-600 mt-4">You're subscribed!</p>}
+    </>
   );
 };
 
