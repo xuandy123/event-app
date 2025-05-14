@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState, FormEvent, ChangeEvent } from "react";
+import { FC, useState, FormEvent, ChangeEvent, useEffect } from "react";
 
 const SubscriptionForm: FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
@@ -62,12 +62,21 @@ const SubscriptionForm: FC = () => {
     )?.showModal();
   };
 
+  useEffect(() => {
+    // Register a global function to open the modal
+    (window as unknown as Window & { openSubscriptionModal: () => void }).openSubscriptionModal = () => {
+      (
+        document.getElementById("subscription_modal") as HTMLDialogElement
+      )?.showModal();
+    };
+  }, []);
+
   return (
     <>
       <button
         type="button"
         onClick={openModal}
-        className="w-full bg-red-600 text-white py-2 rounded font-semibold hover:bg-red-700 hover:cursor-pointer"
+        className="w-full bg-primary text-secondary py-2 rounded font-semibold hover:bg-primary/80 hover:cursor-pointer"
       >
         Join for free
       </button>
@@ -111,7 +120,7 @@ const SubscriptionForm: FC = () => {
             <div className="modal-action flex justify-between items-center">
               <button
                 type="submit"
-                className="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+                className="bg-secondary text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition hover:cursor-pointer"
               >
                 Subscribe
               </button>
@@ -124,7 +133,7 @@ const SubscriptionForm: FC = () => {
                     ) as HTMLDialogElement
                   )?.close()
                 }
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 hover:cursor-pointer"
               >
                 Cancel
               </button>

@@ -31,44 +31,18 @@ const Header: FC = () => {
           <ul className="flex items-center space-x-6">
             <li>
               <Link
-                href="#features"
+                href="/events"
                 className="text-gray-800 hover:text-red-600 transition"
               >
-                Features
+                Events
               </Link>
             </li>
-            <li>
-              <Link
-                href="#how-it-works"
-                className="text-gray-800 hover:text-red-600 transition"
-              >
-                How It Works
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#testimonials"
-                className="text-gray-800 hover:text-red-600 transition"
-              >
-                Testimonials
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#faq"
-                className="text-gray-800 hover:text-red-600 transition"
-              >
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#signup"
-                className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium"
-              >
-                Sign Up Now
-              </Link>
-            </li>
+            <button
+              onClick={() => (window as unknown as Window & { openSubscriptionModal: () => void }).openSubscriptionModal?.()}
+              className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium hover:cursor-pointer"
+            >
+              Sign Up Now
+            </button>
           </ul>
         </nav>
 

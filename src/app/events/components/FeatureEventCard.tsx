@@ -20,7 +20,7 @@ export default function FeaturedEventCard({ event }: Props) {
   };
 
   return (
-    <div className="card w-full max-w-[400px] bg-base-100 border border-pink-200 shadow-md rounded-xl overflow-hidden">
+    <div className="card w-full max-w-[400px] bg-base-100 border border-primary shadow-md rounded-xl overflow-hidden">
       {/* Image and optional Featured Badge */}
       {event.headerImage?.length > 0 && (
         <Swiper
@@ -44,7 +44,7 @@ export default function FeaturedEventCard({ event }: Props) {
         <div className="flex justify-between">
           <h2 className="card-title">{event.name}</h2>
           {event.featured && (
-            <div className="badge badge-secondary text-white bg-pink-500 border-none">
+            <div className="badge badge-secondary text-white bg-secondary border-none">
               Featured
             </div>
           )}
@@ -52,7 +52,7 @@ export default function FeaturedEventCard({ event }: Props) {
 
         {/* Venue name */}
         {event.venue && (
-          <p className="text-sm text-pink-500 font-semibold">{event.venue}</p>
+          <p className="text-sm text-neutral font-semibold">{event.venue}</p>
         )}
 
         {/* Time and Price */}

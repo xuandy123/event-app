@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="chicago-flag">
       <body className={`${poppins.variable} antialiased`}>
         <Header />
         {children}

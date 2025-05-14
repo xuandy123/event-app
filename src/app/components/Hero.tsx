@@ -7,7 +7,7 @@ const Hero: FC = () => {
     <main className="bg-white text-black p-4 py-16 flex flex-col items-center justify-center md:flex-row md:justify-around">
       {/* Left Section */}
       <div className="max-w-lg space-y-6">
-        <div className="bg-red-100 text-red-700 px-3 py-1 rounded-full inline-block text-sm font-semibold">
+        <div className="bg-primary text-secondary px-3 py-1 rounded-full inline-block text-sm font-semibold">
           Chicago&apos;s Weekly Text Guide
         </div>
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
@@ -30,8 +30,8 @@ const Hero: FC = () => {
       </div>
 
       {/* Right Section */}
-      <div className="bg-gray-100 shadow-lg rounded-2xl p-6 mt-12 md:mt-0 max-w-md w-full">
-        <div className="text-red-600 font-bold text-lg">{APP_NAME}</div>
+      <div className="bg-neutral-100 shadow-lg rounded-2xl p-6 mt-12 md:mt-0 max-w-md w-full">
+        <div className="text-secondary font-bold text-lg">{APP_NAME}</div>
         <div className="text-gray-500 text-sm">Friday, 2:00 PM</div>
 
         <div className="mt-4 space-y-4">
