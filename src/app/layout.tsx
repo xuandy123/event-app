@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-
+import { Analytics } from "@vercel/analytics/next"
 // Load Poppins with desired weights
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,6 +27,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Analytics/>
       </body>
     </html>
   );
