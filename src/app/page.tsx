@@ -25,11 +25,15 @@ const Home: NextPage = () => {
           <Hero />
         </div>
 
-        <Features />
-        <HowItWorks />
-        <Testimonials />
-        <FAQ />
-        <EndCTA />
+        {false && (
+          <>
+            <Features />
+            <HowItWorks />
+            <Testimonials />
+            <FAQ />
+            <EndCTA />
+          </>
+        )}
       </main>
     </div>
   );
