@@ -38,7 +38,9 @@ const SubscriptionForm: FC = () => {
       const data = await res.json();
       setSubmitted(true);
       setError("");
-      (document.getElementById("subscription_modal") as HTMLDialogElement)?.close();
+      (
+        document.getElementById("subscription_modal") as HTMLDialogElement
+      )?.close();
       console.log("Subscribed user ID:", data.userId);
     } catch (err) {
       console.error(err);
@@ -55,7 +57,9 @@ const SubscriptionForm: FC = () => {
   };
 
   const openModal = () => {
-    (document.getElementById("subscription_modal") as HTMLDialogElement)?.showModal();
+    (
+      document.getElementById("subscription_modal") as HTMLDialogElement
+    )?.showModal();
   };
 
   return (
@@ -69,56 +73,69 @@ const SubscriptionForm: FC = () => {
       </button>
 
       <dialog id="subscription_modal" className="modal">
-  <div className="modal-box max-w-md p-6 bg-white rounded-2xl shadow-xl">
-    <h3 className="text-xl font-semibold text-gray-800 mb-4">Subscribe to Dibs Chicago</h3>
-    <p className="text-sm text-gray-600 mb-4">
-      Get a weekly text with the best events, eats, and things to do in Chicago.
-    </p>
+        <div className="modal-box max-w-md p-6 bg-white rounded-2xl shadow-xl">
+          <h3 className="text-xl font-semibold text-gray-800 mb-4">
+            Subscribe to Dibs Chicago
+          </h3>
+          <p className="text-sm text-gray-600 mb-4">
+            Get a weekly text with the best events, eats, and things to do in
+            Chicago.
+          </p>
 
-    <form className="space-y-4" onSubmit={handleSubmit}>
-      <input
-        type="tel"
-        placeholder="Enter your phone number"
-        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
-        required
-        onChange={handlePhoneChange}
-        value={phoneNumber}
-      />
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <input
+              type="tel"
+              placeholder="Enter your phone number"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
+              required
+              onChange={handlePhoneChange}
+              value={phoneNumber}
+            />
 
-      <label className="flex items-flex-start space-x-2 text-sm text-gray-700">
-        <input
-          type="checkbox"
-          className="checkbox"
-          checked={consent}
-          onChange={handleConsentChange}
-        />
-        <span>By checking this box, you agree to receive recurring SMS messages from Dibs Chicago. Message and data rates may apply. Reply STOP to unsubscribe.</span>
-      </label>
+            <label className="flex items-flex-start space-x-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={consent}
+                onChange={handleConsentChange}
+              />
+              <span>
+                By checking this box, you agree to receive recurring SMS
+                messages from Dibs Chicago. Message and data rates may apply.
+                Reply STOP to unsubscribe.
+              </span>
+            </label>
 
-      {error && <p className="text-red-600 text-sm">{error}</p>}
+            {error && <p className="text-red-600 text-sm">{error}</p>}
 
-      <div className="modal-action flex justify-between items-center">
-        <button
-          type="submit"
-          className="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition"
-        >
-          Subscribe
-        </button>
-        <button
-          type="button"
-          onClick={() =>
-            (document.getElementById("subscription_modal") as HTMLDialogElement)?.close()
-          }
-          className="text-gray-500 hover:text-gray-700"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-</dialog>
+            <div className="modal-action flex justify-between items-center">
+              <button
+                type="submit"
+                className="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+              >
+                Subscribe
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  (
+                    document.getElementById(
+                      "subscription_modal",
+                    ) as HTMLDialogElement
+                  )?.close()
+                }
+                className="text-gray-500 hover:text-gray-700"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </dialog>
 
-      {submitted && <p className="text-green-600 mt-4">You&apos;re subscribed!</p>}
+      {submitted && (
+        <p className="text-green-600 mt-4">You&apos;re subscribed!</p>
+      )}
     </>
   );
 };

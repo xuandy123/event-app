@@ -98,4 +98,6 @@ model Events {
   facebook         String?
   details          String
   expect           Json
+  featured         Boolean @default(false)
+  venue            String?
 }

@@ -1,29 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { EventFormData } from "@/types/schema";
 import EventCard from "./components/EventCard";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-interface Event {
-  name: string;
-  id: string;
-  info: string;
-  headerImage: string[];
-  when: string;
-  startTime: string;
-  endTime: string;
-  where: string[];
-  price: string;
-  instagram?: string;
-  tiktok?: string;
-  facebook?: string;
-  details: string;
-  expect: any;
-}
-
 export default function AdminDashboard() {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<EventFormData[]>([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 

@@ -18,6 +18,8 @@ const UpsertEventRequest = z.object({
   facebook: z.string().optional(),
   details: z.string(),
   expect: z.any(), // Adjust if you want to validate this structure more strictly
+  featured: z.boolean(),
+  venue: z.string(),
 });
 
 export const POST = executeApi<CreateEventResponse, typeof UpsertEventRequest>(
@@ -36,6 +38,8 @@ export const POST = executeApi<CreateEventResponse, typeof UpsertEventRequest>(
       facebook: body.facebook,
       details: body.details,
       expect: body.expect,
+      featured: body.featured,
+      venue: body.venue,
     };
 
     let event;

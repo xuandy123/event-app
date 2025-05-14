@@ -3,7 +3,11 @@
 import { useRouter } from "next/navigation";
 import { EventFormData } from "@/types/schema";
 import React from "react";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 interface Props {
   event: EventFormData;
 }
@@ -12,25 +16,44 @@ export default function FeaturedEventCard({ event }: Props) {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push(`/events/${event.id}`); // Navigating to the specific event page
+    router.push(`/events/${event.id}`);
   };
 
   return (
     <div className="card w-full max-w-[400px] bg-base-100 border border-pink-200 shadow-md rounded-xl overflow-hidden">
-      {/* Featured Badge */}
-      <div className="relative">
-        <img
-          src={event.headerImage[0]}
-          alt={event.name}
-          className="w-full h-48 object-cover"
-        />
-        <div className="absolute top-2 left-2 badge badge-secondary text-white bg-pink-500 border-none">
-          🐐 Featured
-        </div>
-      </div>
+      {/* Image and optional Featured Badge */}
+      {event.headerImage?.length > 0 && (
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          className="w-full h-48 rounded-xl overflow-hidden"
+        >
+          {event.headerImage.map((url, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={url}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-48 object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
 
       <div className="card-body p-4 space-y-2">
-        <h2 className="card-title text-lg font-bold">{event.name}</h2>
+        <div className="flex justify-between">
+          <h2 className="card-title">{event.name}</h2>
+          {event.featured && (
+            <div className="badge badge-secondary text-white bg-pink-500 border-none">
+              Featured
+            </div>
+          )}
+        </div>
+
+        {/* Venue name */}
+        {event.venue && (
+          <p className="text-sm text-pink-500 font-semibold">{event.venue}</p>
+        )}
 
         {/* Time and Price */}
         <div className="flex justify-between items-center text-sm text-gray-500">

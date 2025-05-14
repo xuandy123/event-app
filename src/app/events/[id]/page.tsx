@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import { EventFormData } from "@/types/schema";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
@@ -17,8 +17,8 @@ export default function EventDetailsPage() {
     null,
   );
   const [mapLoading, setMapLoading] = useState(false);
+  const controlAddedRef = useRef(false); // <-- Track if the control was added
 
-  // Google Maps container style
   const mapContainerStyle = {
     width: "100%",
     height: "300px",
@@ -37,7 +37,7 @@ export default function EventDetailsPage() {
             },
           });
           const data = await response.json();
-          setEvent(data.data.event); // Assuming data.event contains the event details
+          setEvent(data.data.event);
           if (data.data.event.where) {
             geocodeAddress(data.data.event.where);
           }
@@ -52,14 +52,10 @@ export default function EventDetailsPage() {
     }
   }, [id]);
 
-  // Geocode the address to get coordinates
   const geocodeAddress = async (address: string) => {
     setMapLoading(true);
     try {
-      // Using Google Maps Geocoding API
       const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
-      // Check if API key exists
       if (!apiKey) {
         console.error("Google Maps API key is missing");
         setMapLoading(false);
@@ -83,8 +79,6 @@ export default function EventDetailsPage() {
           data.status,
           data.error_message || "",
         );
-
-        // If we're getting REQUEST_DENIED, it's likely an API key issue
         if (data.status === "REQUEST_DENIED") {
           console.error(
             "API key may be invalid, missing, or has insufficient permissions",
@@ -98,13 +92,8 @@ export default function EventDetailsPage() {
     }
   };
 
-  if (loading) {
-    return <p>Loading event details...</p>;
-  }
-
-  if (!event) {
-    return <p>Event not found.</p>;
-  }
+  if (loading) return <p>Loading event details...</p>;
+  if (!event) return <p>Event not found.</p>;
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
@@ -149,6 +138,32 @@ export default function EventDetailsPage() {
               mapContainerStyle={mapContainerStyle}
               center={mapCoordinates}
               zoom={15}
+              onLoad={(map) => {
+                if (controlAddedRef.current) return;
+                controlAddedRef.current = true;
+
+                const controlDiv = document.createElement("div");
+                controlDiv.style.backgroundColor = "#fff";
+                controlDiv.style.border = "2px solid #ccc";
+                controlDiv.style.borderRadius = "3px";
+                controlDiv.style.margin = "10px";
+                controlDiv.style.padding = "6px 12px";
+                controlDiv.style.cursor = "pointer";
+                controlDiv.style.fontSize = "14px";
+                controlDiv.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+                controlDiv.textContent = "Open in Google Maps";
+
+                controlDiv.addEventListener("click", () => {
+                  window.open(
+                    `https://www.google.com/maps?q=${mapCoordinates.lat},${mapCoordinates.lng}`,
+                    "_blank",
+                  );
+                });
+
+                map.controls[
+                  window.google.maps.ControlPosition.LEFT_BOTTOM
+                ].push(controlDiv);
+              }}
             >
               <Marker position={mapCoordinates} />
             </GoogleMap>

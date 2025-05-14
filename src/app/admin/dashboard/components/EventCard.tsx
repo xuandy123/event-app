@@ -6,30 +6,10 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-interface Expectation {
-  title: string;
-  description: string;
-}
-
-interface Event {
-  id: string;
-  name: string;
-  info: string;
-  headerImage: string[];
-  startTime: string;
-  endTime: string;
-  where: string[] | string;
-  price: string;
-  instagram?: string;
-  tiktok?: string;
-  facebook?: string;
-  details: string;
-  expect?: Expectation[];
-}
+import { EventFormData } from "@/types/schema";
 
 interface EventCardProps {
-  event: Event;
+  event: EventFormData;
   editable?: boolean;
   onEdit?: (eventId: string) => void;
   onDelete?: (eventId: string) => void;
@@ -62,7 +42,19 @@ export default function EventCard({
       )}
 
       <div className="card-body">
-        <h2 className="card-title">{event.name}</h2>
+        <div className="flex justify-between">
+          <h2 className="card-title">{event.name}</h2>
+          {event.featured && (
+            <div className="badge badge-secondary text-white bg-pink-500 border-none">
+              🐐 Featured
+            </div>
+          )}
+        </div>
+
+        {/* Venue name */}
+        {event.venue && (
+          <p className="text-sm text-pink-500 font-semibold">{event.venue}</p>
+        )}
         <p>{event.info}</p>
 
         <p className="text-sm text-gray-500">

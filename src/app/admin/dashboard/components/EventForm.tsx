@@ -17,33 +17,59 @@ export default function EventForm({
   submitLabel = "Submit",
 }: EventFormProps) {
   const [formData, setFormData] = useState<EventFormData>(
-    initialData || {
-      id: "",
-      name: "",
-      info: "",
-      headerImage: [""],
-      startTime: "",
-      endTime: "",
-      where: "",
-      price: "",
-      instagram: "",
-      tiktok: "",
-      facebook: "",
-      details: "",
-      expect: [{ title: "", description: "" }],
-    },
+    initialData
+      ? {
+          ...initialData,
+          name: initialData.name ?? "",
+          info: initialData.info ?? "",
+          headerImage: initialData.headerImage ?? [""],
+          startTime: initialData.startTime ?? "",
+          endTime: initialData.endTime ?? "",
+          where: initialData.where ?? "",
+          price: initialData.price ?? "",
+          instagram: initialData.instagram ?? "",
+          tiktok: initialData.tiktok ?? "",
+          facebook: initialData.facebook ?? "",
+          details: initialData.details ?? "",
+          expect: initialData.expect?.map((e) => ({
+            title: e.title ?? "",
+            description: e.description ?? "",
+          })) ?? [{ title: "", description: "" }],
+          featured: initialData.featured ?? false,
+          venue: initialData.venue ?? "",
+        }
+      : {
+          id: "",
+          name: "",
+          info: "",
+          headerImage: [""],
+          startTime: "",
+          endTime: "",
+          where: "",
+          price: "",
+          instagram: "",
+          tiktok: "",
+          facebook: "",
+          details: "",
+          expect: [{ title: "", description: "" }],
+          featured: false,
+          venue: "",
+        },
   );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+
+    const newValue =
+      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+
     if (name === "startTime" || name === "endTime") {
-      // Convert local datetime to ISO with Z (UTC)
       const iso = new Date(value).toISOString();
       setFormData((prev) => ({ ...prev, [name]: iso }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({ ...prev, [name]: newValue }));
     }
   };
 
@@ -84,7 +110,6 @@ export default function EventForm({
     await onSubmit(formData);
   };
 
-  // Function to convert UTC time to local time format
   const convertToLocalTime = (utcDate: string) => {
     const localDate = new Date(utcDate);
     const year = localDate.getFullYear();
@@ -93,10 +118,9 @@ export default function EventForm({
     const hours = String(localDate.getHours()).padStart(2, "0");
     const minutes = String(localDate.getMinutes()).padStart(2, "0");
 
-    return `${year}-${month}-${day}T${hours}:${minutes}`; // Format: "YYYY-MM-DDTHH:MM"
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
-  // Convert UTC time to local time for display in the input field
   const formattedStartTime = convertToLocalTime(formData.startTime);
   const formattedEndTime = convertToLocalTime(formData.endTime);
 
@@ -110,6 +134,29 @@ export default function EventForm({
         value={formData.name}
         onChange={handleChange}
       />
+
+      <input
+        type="text"
+        name="venue"
+        placeholder="Venue Name"
+        className="input input-bordered w-full"
+        value={formData.venue}
+        onChange={handleChange}
+      />
+
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          name="featured"
+          checked={formData.featured}
+          onChange={handleChange}
+          className="checkbox"
+        />
+        <label htmlFor="featured" className="label-text">
+          Featured
+        </label>
+      </div>
+
       <input
         type="text"
         name="info"
@@ -145,15 +192,14 @@ export default function EventForm({
         type="datetime-local"
         name="startTime"
         className="input input-bordered w-full"
-        value={formattedStartTime} // Format date-time for the input
+        value={formattedStartTime}
         onChange={handleChange}
       />
-
       <input
         type="datetime-local"
         name="endTime"
         className="input input-bordered w-full"
-        value={formattedEndTime} // Format date-time for the input
+        value={formattedEndTime}
         onChange={handleChange}
       />
       <input

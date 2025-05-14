@@ -15,6 +15,8 @@ export type EventFormData = {
   facebook: string;
   details: string;
   expect: { title: string; description: string }[];
+  featured: boolean;
+  venue: string;
 };
 
 export const SubscribeRequest = z.object({
