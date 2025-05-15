@@ -78,3 +78,11 @@ export const DeleteEventRequest = z.object({
 export type DeleteEventResponse = {
   success: boolean;
 };
+
+export const SmsSubscriberRequest = z.object({
+  message: z.string(),
+});
+
+export type SmsSubscriberResponse = {
+  success: boolean;
+};

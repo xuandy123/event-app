@@ -38,7 +38,13 @@ const Header: FC = () => {
               </Link>
             </li>
             <button
-              onClick={() => (window as unknown as Window & { openSubscriptionModal: () => void }).openSubscriptionModal?.()}
+              onClick={() =>
+                (
+                  window as unknown as Window & {
+                    openSubscriptionModal: () => void;
+                  }
+                ).openSubscriptionModal?.()
+              }
               className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium hover:cursor-pointer"
             >
               Sign Up Now

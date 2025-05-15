@@ -4,26 +4,35 @@ import { SubscribeRequest, SubscribeResponse } from "@/types/schema";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+
 export const POST = executePublicApi<
   SubscribeResponse,
   typeof SubscribeRequest
->(SubscribeRequest, async (req, body) => {
+>(SubscribeRequest, async (_req, body) => {
   const { phone } = body;
+  const numericPhone = parseInt(phone);
+
   try {
-    await prisma.subscriber.create({
-      data: {
-        phone: parseInt(phone),
-      },
+    // Check if the phone number already exists
+    const existing = await prisma.subscriber.findUnique({
+      where: { phone: numericPhone },
     });
 
-    const fakephone = "18777804236";
-    await sendIntroText(`+1${fakephone}`); // Ensure correct format!
+    if (!existing) {
+      // Only create a new subscriber if it doesn't exist
+      await prisma.subscriber.create({
+        data: { phone: numericPhone },
+      });
+
+      await sendIntroText(`+1${phone}`); // Ensure correct format!
+    }
   } catch (err) {
-    console.log(err);
+    console.error("Subscription error:", err);
     return {
       success: false,
     };
   }
+
   return {
     success: true,
   };

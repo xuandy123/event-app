@@ -1,6 +1,12 @@
 "use client";
 
-import { CalendarClock, Settings, LogOut, CalendarPlus2 } from "lucide-react";
+import {
+  CalendarClock,
+  MessageCircle,
+  Settings,
+  LogOut,
+  CalendarPlus2,
+} from "lucide-react";
 import React from "react";
 import { signOut } from "next-auth/react";
 import { APP_NAME } from "@/app/constants";
@@ -51,6 +57,12 @@ const ResponsiveDrawer: React.FC<ResponsiveDrawerProps> = ({ children }) => {
                       <a href="/admin/dashboard">
                         <CalendarClock />
                         Current Events
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/admin/dashboard/send-sms">
+                        <MessageCircle />
+                        Send SMS
                       </a>
                     </li>
                   </ul>

@@ -64,7 +64,9 @@ const SubscriptionForm: FC = () => {
 
   useEffect(() => {
     // Register a global function to open the modal
-    (window as unknown as Window & { openSubscriptionModal: () => void }).openSubscriptionModal = () => {
+    (
+      window as unknown as Window & { openSubscriptionModal: () => void }
+    ).openSubscriptionModal = () => {
       (
         document.getElementById("subscription_modal") as HTMLDialogElement
       )?.showModal();

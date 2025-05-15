@@ -59,6 +59,7 @@ model Subscriber {
   email           String?          @unique
   status          SubscriberStatus @default(ACTIVE)
   metadata        SubscriberMetadata?
+  createdAt       DateTime @default(now())
 }
 
 enum Sources {

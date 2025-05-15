@@ -7,7 +7,6 @@ const client = twilio(
 );
 
 export const sendIntroText = async (phone: string) => {
-  console.log("sending");
   return client.messages.create({
     body: `Welcome to ${APP_NAME}!`,
     from: process.env.TWILIO_TOLL_FREE_NUMBER!, // Your Twilio number
