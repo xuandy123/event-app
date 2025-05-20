@@ -5,6 +5,10 @@ import { prisma } from "@/lib/prisma"; // adjust path if needed
 
 const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH);
 
+// Check actual vars being used
+console.log(process.env.TWILIO_SID ? "SID loaded" : "SID missing");
+console.log(process.env.TWILIO_AUTH ? "Auth token loaded" : "Auth token missing");
+
 export const POST = executeApi<
   SmsSubscriberResponse,
   typeof SmsSubscriberRequest
@@ -17,15 +21,22 @@ export const POST = executeApi<
   });
 
   // Send message to each subscriber
-  await Promise.all(
-    subscribers.map(({ phone }) =>
-      client.messages.create({
-        to: `+1${phone}`,
-        from: process.env.TWILIO_TOLL_FREE_NUMBER,
-        body: message,
-      }),
-    ),
+  const results = await Promise.allSettled(
+    subscribers.map(async ({ phone }) => {
+      try {
+        await client.messages.create({
+          to: `+1${phone}`,
+          from: process.env.TWILIO_TOLL_FREE_NUMBER,
+          body: message,
+        });
+      } catch (err) {
+        console.error(`Failed to send to ${phone}:`, err);
+      }
+    }),
   );
 
-  return { success: true };
+  // Optional: collect failed sends
+  const failed = results.filter(r => r.status === "rejected");
+
+  return { success: failed.length === 0 };
 });
