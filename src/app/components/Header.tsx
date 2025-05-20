@@ -13,49 +13,43 @@ const Header: FC = () => {
 
   return (
     <header className="sticky top-0 z-10 bg-white shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <div className="">
-          <Link href={"/"} className="flex items-center space-x-2">
-            <div className="">
-              <Image
-                src="/full_logo.png"
-                width={128}
-                height={64}
-                alt="Dibs Chicago"
-              />
-            </div>
+      <div className="relative max-w-6xl mx-auto px-4 py-8 flex items-center justify-between">
+        {/* Centered Logo (absolute center on mobile) */}
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/full_logo.png"
+              width={128}
+              height={64}
+              alt="Dibs Chicago"
+            />
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:block">
-          <ul className="flex items-center space-x-6">
-            <li>
-              <Link
-                href="/events"
-                className="text-gray-800 hover:text-red-600 transition"
-              >
-                Events
-              </Link>
-            </li>
-            <button
-              onClick={() =>
-                (
-                  window as unknown as Window & {
-                    openSubscriptionModal: () => void;
-                  }
-                ).openSubscriptionModal?.()
-              }
-              className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium hover:cursor-pointer"
-            >
-              Sign Up Now
-            </button>
-          </ul>
+        {/* Desktop Navigation (Right side on desktop) */}
+        <nav className="hidden md:flex items-center space-x-6 ml-auto">
+          <Link
+            href="/events"
+            className="text-gray-800 hover:text-red-600 transition"
+          >
+            Events
+          </Link>
+          <button
+            onClick={() =>
+              (
+                window as unknown as Window & {
+                  openSubscriptionModal: () => void;
+                }
+              ).openSubscriptionModal?.()
+            }
+            className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium"
+          >
+            Sign Up Now
+          </button>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        {/* Mobile Menu Button (right side) */}
+        <div className="md:hidden ml-auto">
           <button
             onClick={toggleMobileMenu}
             className="text-gray-800 focus:outline-none"
