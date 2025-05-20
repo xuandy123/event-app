@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FC, useState } from "react";
-import { APP_NAME } from "../constants";
+import Image from "next/image";
 
 const Header: FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,12 +17,14 @@ const Header: FC = () => {
         {/* Logo */}
         <div className="">
           <Link href={"/"} className="flex items-center space-x-2">
-            <div className="text-red-600 w-6 h-6">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-              </svg>
+            <div className="">
+              <Image
+                src="/full_logo.png"
+                width={128}
+                height={64}
+                alt="Dibs Chicago"
+              />
             </div>
-            <span className="text-xl font-bold">{APP_NAME}</span>
           </Link>
         </div>
 

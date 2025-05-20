@@ -17,7 +17,7 @@ const Home: NextPage = () => {
           name="description"
           content="Get weekly event notifications straight to your phone!"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <main>

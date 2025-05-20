@@ -14,6 +14,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "DibsChicago - Never Miss an Event Again",
   description: "Get weekly event notifications straight to your phone!",
+  icons: {
+    icon: "/favicon.png",      // Correct path for favicon in public/
+    shortcut: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
