@@ -5,10 +5,6 @@ import { prisma } from "@/lib/prisma"; // adjust path if needed
 
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
-console.log("ACCOUNT", process.env.TWILIO_ACCOUNT_SID);
-console.log("AUTH TOKEN", process.env.TWILIO_AUTH_TOKEN);
-
-
 export const POST = executeApi<
   SmsSubscriberResponse,
   typeof SmsSubscriberRequest
