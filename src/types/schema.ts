@@ -81,6 +81,7 @@ export type DeleteEventResponse = {
 
 export const SmsSubscriberRequest = z.object({
   message: z.string(),
+  adminOnly: z.boolean().default(false),
 });
 
 export type SmsSubscriberResponse = {

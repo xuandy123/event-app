@@ -6,6 +6,7 @@ const emojis = ["😀", "🎉", "❤️", "🚀", "🔥", "👍", "😎", "💬"
 
 export default function SendSmsPage() {
   const [message, setMessage] = useState("");
+  const [adminOnly, setAdminOnly] = useState(false);
   const [status, setStatus] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
@@ -17,13 +18,14 @@ export default function SendSmsPage() {
       const res = await fetch("/api/sms/subscribers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, adminOnly }),
       });
 
       if (!res.ok) throw new Error("Failed to send SMS");
 
       setStatus("✅ SMS sent successfully!");
-      setMessage(""); // Clear after success
+      setMessage("");
+      setAdminOnly(false);
     } catch (err) {
       console.error(err);
       setStatus("❌ Failed to send SMS");
@@ -76,6 +78,17 @@ export default function SendSmsPage() {
               </div>
             )}
           </div>
+
+          {/* Admin Only Toggle */}
+          <label className="flex items-center space-x-2 text-sm text-gray-700">
+            <input
+              type="checkbox"
+              checked={adminOnly}
+              onChange={() => setAdminOnly(!adminOnly)}
+              className="form-checkbox h-4 w-4 text-primary"
+            />
+            <span>Send to admins only</span>
+          </label>
 
           <button
             type="submit"
