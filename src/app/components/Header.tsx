@@ -83,7 +83,7 @@ const Header: FC = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-4 py-3 bg-white border-t">
+        <div className="md:hidden px-4 py-3 bg-white">
           <nav>
             <ul className="space-y-3">
               <li>
@@ -119,12 +119,18 @@ const Header: FC = () => {
                 </Link>
               </li>
               <li className="pt-2">
-                <Link
-                  href="#signup"
-                  className="block w-full text-center bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition font-medium"
-                >
-                  Sign Up Now
-                </Link>
+              <button
+            onClick={() =>
+              (
+                window as unknown as Window & {
+                  openSubscriptionModal: () => void;
+                }
+              ).openSubscriptionModal?.()
+            }
+            className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium"
+          >
+            Sign Up Now
+          </button>
               </li>
             </ul>
           </nav>
