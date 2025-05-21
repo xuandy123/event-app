@@ -1,6 +1,5 @@
 import { FC } from "react";
 import SubscriptionForm from "./SubscriptionForm";
-import { APP_NAME } from "../constants";
 
 const Hero: FC = () => {
   return (
