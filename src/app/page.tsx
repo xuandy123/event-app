@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto mb-8">
           <Hero />
         </div>
         <Gallery />

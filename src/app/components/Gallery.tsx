@@ -84,7 +84,7 @@ const Gallery: FC = () => {
   
   return (
     <div>
-        <h2 className="text-3xl font-bold mb-8 text-center">Hottest Chicago Events</h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-center mb-4">Hottest Chicago Events</h2>
         <div className='flex justify-center bg-black'>
         <div className="px-4 lg:px-32 py-8">
       

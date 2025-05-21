@@ -7,7 +7,7 @@ const Hero: FC = () => {
     <main className="bg-white text-black p-4 flex flex-col items-center justify-center md:flex-row md:justify-around">
       {/* Left Section */}
       <div className="max-w-lg space-y-6">
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-center">
           Your Weekly Text For Chicago&apos;s Best
         </h1>
         <div className="relative w-full mb-8 ">
@@ -32,43 +32,6 @@ const Hero: FC = () => {
           <li>🍹 The best food and drinks that you need to try</li>
           <li>🎁 Free drinks, prizes, and nightlife perks</li>
         </ul>
-      </div>
-
-      {/* Right Section */}
-      <div className="bg-neutral-100 shadow-lg rounded-2xl p-6 mt-12 md:mt-0 max-w-md w-full">
-        <div className="text-secondary font-bold text-lg">{APP_NAME}</div>
-        <div className="text-gray-500 text-sm">Friday, 2:00 PM</div>
-
-        <div className="mt-4 space-y-4">
-          <div>
-            <span className="font-bold">{APP_NAME} Weekly:</span> This weekend
-            in Chicago! 🏙️
-          </div>
-          <div>
-            🍽️ <span className="font-bold">EAT:</span> The new Portillo&apos;s
-            pop-up in Wicker Park is serving Italian beef egg rolls that are
-            breaking the internet.
-          </div>
-          <div>
-            🍹 <span className="font-bold">DRINK:</span> Rooftop season is here!
-            Cindy’s at the Chicago Athletic Association has new spring cocktails
-            with skyline views.
-          </div>
-          <div>
-            🎭 <span className="font-bold">DO:</span> The Randolph Street Market
-            is back this Sat-Sun with 300+ vendors, food trucks, and live music.
-            Use code {APP_NAME} for $5 off admission.
-          </div>
-          <div>
-            📰 <span className="font-bold">NEWS:</span> The 606 trail extension
-            breaks ground next week, adding 1.5 miles to the popular elevated
-            path.
-          </div>
-        </div>
-
-        <p className="text-xs text-gray-500 mt-4">
-          Reply STOP to unsubscribe or HELP for help.
-        </p>
       </div>
     </main>
   );
