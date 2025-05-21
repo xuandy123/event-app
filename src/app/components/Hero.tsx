@@ -1,7 +1,23 @@
-import { FC } from "react";
+"use client"
+
+import { FC, useEffect, useRef } from "react";
 import SubscriptionForm from "./SubscriptionForm";
 
 const Hero: FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video
+        .play()
+        .catch((err) => {
+          console.error("Autoplay failed on Safari:", err);
+        });
+    }
+  }, []);
+
   return (
     <main className="bg-white text-black p-4 flex flex-col items-center justify-center md:flex-row md:justify-around">
       {/* Left Section */}
@@ -9,20 +25,21 @@ const Hero: FC = () => {
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-center">
           Your Weekly Text For Chicago&apos;s Best
         </h1>
-        <div className="relative w-full mb-8 ">
-        {/* Background Video */}
-        <video
-          className="top-0 left-0 w-full object-cover rounded-2xl"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-        >
-          <source src={"/dibs_montage.mp4"} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+        <div className="relative w-full mb-8">
+          {/* Background Video */}
+          <video
+            ref={videoRef}
+            className="top-0 left-0 w-full object-cover rounded-2xl"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          >
+            <source src="/dibs_montage.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <SubscriptionForm />
 
         <ul className="space-y-3">
