@@ -78,7 +78,7 @@ const SubscriptionForm: FC = () => {
       <button
         type="button"
         onClick={openModal}
-        className="w-full bg-primary text-secondary py-2 rounded font-semibold hover:bg-primary/80 hover:cursor-pointer"
+        className="button px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition"
       >
         Join for free
       </button>

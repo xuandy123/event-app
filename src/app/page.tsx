@@ -1,13 +1,7 @@
 import Head from "next/head";
 import Hero from "./components/Hero";
-import Features from "./components/Features";
 import type { NextPage } from "next";
-import HowItWorks from "./components/HowItWorks";
-import Testimonials from "./components/Testimonials";
-import FAQ from "./components/FAQ";
-import EndCTA from "./components/EndCTA";
 import { APP_NAME } from "./constants";
-import Gallery from "./components/Gallery";
 
 const Home: NextPage = () => {
   return (
@@ -21,22 +15,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <main>
-        <div className="max-w-7xl mx-auto mb-8">
+      <main className="w-full px-4 lg:px-32">
           <Hero />
-        </div>
-        <Gallery />
-
-
-        {false && (
-          <>
-            <Features />
-            <HowItWorks />
-            <Testimonials />
-            <FAQ />
-            <EndCTA />
-          </>
-        )}
       </main>
     </div>
   );

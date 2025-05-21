@@ -1,53 +1,38 @@
-"use client"
+"use client";
 
-import { FC, useEffect, useRef } from "react";
+import { FC } from "react";
 import SubscriptionForm from "./SubscriptionForm";
 
 const Hero: FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.muted = true;
-      video
-        .play()
-        .catch((err) => {
-          console.error("Autoplay failed on Safari:", err);
-        });
-    }
-  }, []);
-
   return (
-    <main className="bg-white text-black p-4 flex flex-col items-center justify-center md:flex-row md:justify-around">
-      {/* Left Section */}
-      <div className="max-w-lg space-y-6">
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-center">
-          Your Weekly Text For Chicago&apos;s Best
+    <main className="bg-white text-black py-10 flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-16">
+      {/* Left Column (Text content) */}
+      <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-6">
+        <h1 className="text-2xl md:text-7xl font-bold leading-tight">
+          Find the best in Chicago.
         </h1>
-        <div className="relative w-full mb-8">
-          {/* Background Video */}
-          <video
-            ref={videoRef}
-            className="top-0 left-0 w-full object-cover rounded-2xl"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-          >
-            <source src="/dibs_montage.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
         <SubscriptionForm />
 
-        <ul className="space-y-3">
-          <li>📅 1 weekly text that puts you on to the best of Chicago</li>
-          <li>🎭 A curated list of the best upcoming events</li>
-          <li>🍹 The best food and drinks that you need to try</li>
-          <li>🎁 Free drinks, prizes, and nightlife perks</li>
+        <ul className="space-y-2 text-lg">
+          <li>💎 We research Chicago events</li>
+          <li>✍️ We create plans for the best ones</li>
+          <li>💬 We text them to you (called &quot;Dibs!&quot;)</li>
         </ul>
+      </div>
+
+      {/* Right Column (Video) */}
+      <div className="w-full md:w-1/2">
+        <video
+          className="w-full rounded-2xl object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        >
+          <source src="/dibs_montage.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </main>
   );
