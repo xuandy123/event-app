@@ -4,7 +4,7 @@ import { APP_NAME } from "../constants";
 
 const Hero: FC = () => {
   return (
-    <main className="bg-white text-black p-4 py-8 flex flex-col items-center justify-center md:flex-row md:justify-around">
+    <main className="bg-white text-black p-4 flex flex-col items-center justify-center md:flex-row md:justify-around">
       {/* Left Section */}
       <div className="max-w-lg space-y-6">
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
