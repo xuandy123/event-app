@@ -7,6 +7,7 @@ import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import EndCTA from "./components/EndCTA";
 import { APP_NAME } from "./constants";
+import Gallery from "./components/Gallery";
 
 const Home: NextPage = () => {
   return (
@@ -24,6 +25,8 @@ const Home: NextPage = () => {
         <div className="max-w-7xl mx-auto">
           <Hero />
         </div>
+        <Gallery />
+
 
         {false && (
           <>
