@@ -1,14 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { APP_NAME } from "../constants";
+import Image from "next/image";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50 py-10 px-4">
+    <footer className="border-t border-gray-200 bg-gray-50 py-4 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <h2 className="text-2xl font-bold text-gray-800">{APP_NAME}</h2>
+            <Link href="/" className="flex items-center space-x-2">
+              <Image
+                src="/full_logo.png"
+                width={128}
+                height={64}
+                alt="Dibs Chicago"
+              />
+            </Link>
           </div>
 
           <nav className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-center sm:text-left">
@@ -30,7 +37,6 @@ const Footer: React.FC = () => {
             >
               Contact Us
             </Link>
-            <p className="text-gray-500">© 2025 {APP_NAME}</p>
           </nav>
         </div>
       </div>

@@ -2,10 +2,9 @@ import Head from "next/head";
 import Hero from "./components/Hero";
 import type { NextPage } from "next";
 import { APP_NAME } from "./constants";
-import Gallery from "./components/Gallery";
 const Home: NextPage = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen md:min-h-[85vh]">
       <Head>
         <title>{APP_NAME} - Never Miss an Event Again</title>
         <meta
@@ -16,8 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="w-full px-4 lg:px-32">
-          <Hero />
-          <Gallery />
+        <Hero />
       </main>
     </div>
   );

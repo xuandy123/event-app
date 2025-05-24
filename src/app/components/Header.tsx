@@ -13,7 +13,7 @@ const Header: FC = () => {
 
   return (
     <header className="sticky top-0 z-10 bg-white shadow-sm">
-      <div className="relative max-w-6xl mx-auto px-4 py-8 flex items-center justify-between">
+      <div className="relative max-w-6xl mx-auto px-4 py-12 flex items-center justify-between">
         {/* Centered Logo (absolute center on mobile) */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <Link href="/" className="flex items-center space-x-2">
@@ -27,7 +27,7 @@ const Header: FC = () => {
         </div>
 
         {/* Desktop Navigation (Right side on desktop) */}
-        <nav className="hidden md:flex items-center space-x-6 ml-auto">
+        <nav className="hidden items-center space-x-6 ml-auto">
           <Link
             href="/events"
             className="text-gray-800 hover:text-red-600 transition"
@@ -49,7 +49,7 @@ const Header: FC = () => {
         </nav>
 
         {/* Mobile Menu Button (right side) */}
-        <div className="md:hidden ml-auto">
+        <div className="hidden ml-auto">
           <button
             onClick={toggleMobileMenu}
             className="text-gray-800 focus:outline-none"
@@ -83,7 +83,7 @@ const Header: FC = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-4 py-3 bg-white">
+        <div className="hidden px-4 py-3 bg-white">
           <nav>
             <ul className="space-y-3">
               <li>
@@ -119,18 +119,18 @@ const Header: FC = () => {
                 </Link>
               </li>
               <li className="pt-2">
-              <button
-            onClick={() =>
-              (
-                window as unknown as Window & {
-                  openSubscriptionModal: () => void;
-                }
-              ).openSubscriptionModal?.()
-            }
-            className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium"
-          >
-            Sign Up Now
-          </button>
+                <button
+                  onClick={() =>
+                    (
+                      window as unknown as Window & {
+                        openSubscriptionModal: () => void;
+                      }
+                    ).openSubscriptionModal?.()
+                  }
+                  className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition font-medium"
+                >
+                  Sign Up Now
+                </button>
               </li>
             </ul>
           </nav>

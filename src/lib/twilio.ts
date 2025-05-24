@@ -1,4 +1,4 @@
-import { APP_NAME } from "@/app/constants";
+import { WELCOME_MESSAGE } from "@/app/constants";
 import twilio from "twilio";
 
 const client = twilio(
@@ -9,7 +9,7 @@ const client = twilio(
 export const sendIntroText = async (phone: string) => {
   try {
     await client.messages.create({
-      body: `🎉Welcome to ${APP_NAME}🎉`,
+      body: WELCOME_MESSAGE,
       from: process.env.TWILIO_TOLL_FREE_NUMBER, // Your Twilio number
       to: phone, // E.164 format, e.g., +14083148624
     });
