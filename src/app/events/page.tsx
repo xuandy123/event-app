@@ -30,16 +30,19 @@ export default function EventsPage() {
   function getWeekOfText(): string {
     const today = new Date();
     const day = today.getDay(); // 0 (Sun) to 6 (Sat)
+    const diff = (day === 0 ? -6 : 1) - day; // Adjust so Monday is 0
+  
     const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - day); // Sunday as the start of the week
-
+    startOfWeek.setDate(today.getDate() + diff);
+  
     const options: Intl.DateTimeFormatOptions = {
       month: "long",
       day: "numeric",
     };
-
+  
     return `Week of ${startOfWeek.toLocaleDateString("en-US", options)}`;
   }
+  
 
   return (
     <div className="px-4 py-6 w-full min-h-screen">

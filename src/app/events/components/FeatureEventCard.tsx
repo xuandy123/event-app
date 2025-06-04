@@ -41,14 +41,24 @@ export default function FeaturedEventCard({ event }: Props) {
       )}
 
       <div className="card-body p-4 space-y-2">
-        <div className="flex justify-between">
-          <h2 className="card-title">{event.name}</h2>
-          {event.featured && (
-            <div className="badge badge-secondary text-white bg-secondary border-none">
-              Featured
-            </div>
-          )}
-        </div>
+      <div className="flex justify-between items-center">
+  <div className="flex flex-col">
+    <h2 className="card-title">{event.name}</h2>
+    {event.venue && (
+      <p className="text-sm text-neutral font-semibold">{event.venue}</p>
+    )}
+  </div>
+  <div className="flex flex-col items-end space-y-1">
+    {event.featured && (
+      <div className="badge badge-secondary text-white bg-secondary border-none">
+        Featured
+      </div>
+    )}
+    <span className="badge badge-outline text-sm">
+      {event.price === "0" || event.price === "free" ? "Free" : `$${event.price}`}
+    </span>
+  </div>
+</div>
 
         {/* Venue name */}
         {event.venue && (
@@ -75,14 +85,6 @@ export default function FeaturedEventCard({ event }: Props) {
               })}
             </span>
           </div>
-          <span className="badge badge-outline">
-            <strong>Price:</strong>{" "}
-            {event.price === "0" || event.price === "free" ? (
-              <p className="text-bold">Free</p>
-            ) : (
-              `$${event.price}`
-            )}
-          </span>
         </div>
 
         {/* Description */}
