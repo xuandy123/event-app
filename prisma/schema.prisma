@@ -101,4 +101,5 @@ model Events {
   expect           Json
   featured         Boolean @default(false)
   venue            String?
+  shortDescription String?
 }

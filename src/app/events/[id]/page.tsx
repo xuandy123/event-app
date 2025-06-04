@@ -92,7 +92,13 @@ export default function EventDetailsPage() {
     }
   };
 
-  if (loading) return <p>Loading event details...</p>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen w-full">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
   if (!event) return <p>Event not found.</p>;
 
   return (
@@ -105,11 +111,17 @@ export default function EventDetailsPage() {
         alt={event.name}
         className="w-full h-64 object-cover rounded-lg mb-4"
       />
-      <p className="text-lg text-gray-700 mb-4">{event.details}</p>
+      <p className="text-md text-gray-700 mb-4">{event.details}</p>
       <div className="text-sm text-gray-500 mb-4">
         <p>
           <strong>When:</strong>{" "}
           {new Date(event.startTime).toLocaleString("en-US", {
+            weekday: "short",
+            hour: "numeric",
+            minute: "numeric",
+          })}{" "}
+          -{" "}
+          {new Date(event.endTime).toLocaleString("en-US", {
             weekday: "short",
             hour: "numeric",
             minute: "numeric",
@@ -119,7 +131,10 @@ export default function EventDetailsPage() {
           <strong>Where:</strong> {event.where}
         </p>
         <p>
-          <strong>Price:</strong> ${event.price}
+          <strong>Price:</strong>{" "}
+          {event.price === "0" || event.price === "free"
+            ? "Free"
+            : `$${event.price}`}
         </p>
       </div>
 

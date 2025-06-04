@@ -55,7 +55,9 @@ export default function EventsPage() {
       </div>
 
       {loading ? (
-        <p className="text-center">Loading events...</p>
+        <div className="flex items-center justify-center w-full">
+          <span className="loading loading-spinner loading-lg text-primary"></span>
+        </div>
       ) : (
         <div className="flex flex-wrap justify-center gap-8">
           {events.map((event, index) => (

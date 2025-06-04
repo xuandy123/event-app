@@ -56,15 +56,33 @@ export default function FeaturedEventCard({ event }: Props) {
         )}
 
         {/* Time and Price */}
-        <div className="flex justify-between items-center text-sm text-gray-500">
-          <span>
-            {new Date(event.startTime).toLocaleString("en-US", {
-              weekday: "short",
-              hour: "numeric",
-              minute: "numeric",
-            })}
+        <div className="flex justify-between items-start text-sm text-gray-500">
+          <div className="flex flex-col">
+            <span>
+              Start:&nbsp;
+              {new Date(event.startTime).toLocaleString("en-US", {
+                weekday: "short",
+                hour: "numeric",
+                minute: "numeric",
+              })}
+            </span>
+            <span>
+              End:&nbsp;
+              {new Date(event.endTime).toLocaleString("en-US", {
+                weekday: "short",
+                hour: "numeric",
+                minute: "numeric",
+              })}
+            </span>
+          </div>
+          <span className="badge badge-outline">
+            <strong>Price:</strong>{" "}
+            {event.price === "0" || event.price === "free" ? (
+              <p className="text-bold">Free</p>
+            ) : (
+              `$${event.price}`
+            )}
           </span>
-          <span className="badge badge-outline">${event.price}</span>
         </div>
 
         {/* Description */}
