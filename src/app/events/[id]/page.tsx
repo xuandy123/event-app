@@ -138,6 +138,19 @@ export default function EventDetailsPage() {
         </p>
       </div>
 
+      <h3 className="text-2xl font-bold mb-4">Expectations</h3>
+      {event.expect?.length > 0 ? (
+        <ul>
+          {event.expect.map((expectation, index) => (
+            <li key={index} className="text-sm text-gray-600 mb-2">
+              <strong>{expectation.title}:</strong> {expectation.description}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <></>
+      )}
+
       {/* Google Maps Section */}
       <div className="my-6">
         <h3 className="text-2xl font-bold mb-4">Location</h3>
@@ -189,19 +202,6 @@ export default function EventDetailsPage() {
           </div>
         )}
       </div>
-
-      <h3 className="text-2xl font-bold mb-4">Expectations</h3>
-      {event.expect?.length > 0 ? (
-        <ul>
-          {event.expect.map((expectation, index) => (
-            <li key={index} className="text-sm text-gray-600 mb-2">
-              <strong>{expectation.title}:</strong> {expectation.description}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No expectations listed for this event.</p>
-      )}
     </div>
   );
 }

@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="chicago-flag">
+    <html lang="en" data-theme="light">
       <body className={`${poppins.variable} antialiased`}>
         <Header />
         {children}

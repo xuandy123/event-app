@@ -89,16 +89,11 @@ export default function FeaturedEventCard({ event }: Props) {
         {/* Description */}
         <p className="text-sm text-gray-600">{event.info}</p>
 
-        {/* Expectation section (first item only) */}
-        {event.expect?.length > 0 && (
-          <p className="text-sm text-gray-700">{event.expect[0].description}</p>
-        )}
-
         {/* Action button */}
         <div className="card-actions justify-end">
           <button
             onClick={handleButtonClick}
-            className="btn btn-sm btn-circle bg-pink-100 text-pink-500 border-none hover:bg-pink-200"
+            className="btn btn-md btn-circle text-primary border-none hover:bg-accent-200"
           >
             ➜
           </button>
