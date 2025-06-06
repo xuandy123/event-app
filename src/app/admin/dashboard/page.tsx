@@ -68,8 +68,8 @@ export default function AdminDashboard() {
                 key={event.id}
                 event={event}
                 editable={true}
-                onEdit={(id) =>
-                  router.push(`/admin/dashboard/edit-event/${id}`)
+                onEdit={() =>
+                  router.push(`/admin/dashboard/edit-event/${event.slug}`)
                 }
                 onDelete={(id) => handleDeleteEvent(id)}
               />

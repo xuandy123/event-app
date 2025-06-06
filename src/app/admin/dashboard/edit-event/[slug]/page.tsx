@@ -6,20 +6,20 @@ import EventForm from "../../components/EventForm";
 import { EventFormData } from "@/types/schema";
 
 export default function EditEventPage() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const router = useRouter();
 
   const [eventData, setEventData] = useState<EventFormData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
+    if (!slug) return;
 
     const fetchEvent = async () => {
       try {
-        const res = await fetch(`/api/events/${id}`, {
+        const res = await fetch(`/api/events/slug`, {
           method: "POST",
-          body: JSON.stringify({ id: id }),
+          body: JSON.stringify({ slug }),
           headers: {
             "Content-Type": "application/json",
           },
@@ -36,7 +36,7 @@ export default function EditEventPage() {
     };
 
     fetchEvent();
-  }, [id, router]);
+  }, [slug, router]);
 
   const handleUpdate = async (updatedData: EventFormData) => {
     const res = await fetch(`/api/events/create/`, {
