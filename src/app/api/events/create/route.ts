@@ -7,6 +7,8 @@ import { CreateEventResponse } from "@/types/schema";
 const UpsertEventRequest = z.object({
   id: z.string().optional(), // Optional ID for updates
   name: z.string(),
+  slug: z.string(),
+  url: z.string().optional(),
   info: z.string(),
   headerImage: z.array(z.string()),
   startTime: z.string(),
@@ -17,7 +19,7 @@ const UpsertEventRequest = z.object({
   tiktok: z.string().optional(),
   facebook: z.string().optional(),
   details: z.string(),
-  expect: z.any(), // Adjust if you want to validate this structure more strictly
+  expect: z.any(), // Consider tightening this schema
   featured: z.boolean(),
   venue: z.string(),
 });
@@ -27,6 +29,8 @@ export const POST = executeApi<CreateEventResponse, typeof UpsertEventRequest>(
   async (_req, body) => {
     const data = {
       name: body.name,
+      slug: body.slug,
+      url: body.url ?? null,
       info: body.info,
       headerImage: body.headerImage,
       startTime: body.startTime,
@@ -45,13 +49,11 @@ export const POST = executeApi<CreateEventResponse, typeof UpsertEventRequest>(
     let event;
 
     if (body.id) {
-      // Update existing event
       event = await prisma.events.update({
         where: { id: body.id },
         data,
       });
     } else {
-      // Create new event
       event = await prisma.events.create({
         data,
       });

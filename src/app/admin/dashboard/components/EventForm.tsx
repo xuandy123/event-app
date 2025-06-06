@@ -1,7 +1,7 @@
 "use client";
 
 import { EventFormData } from "@/types/schema";
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 
 type Expectation = { title: string; description: string };
 
@@ -21,6 +21,8 @@ export default function EventForm({
       ? {
           ...initialData,
           name: initialData.name ?? "",
+          slug: initialData.slug ?? "",
+          url: initialData.url ?? "",
           info: initialData.info ?? "",
           headerImage: initialData.headerImage ?? [""],
           startTime: initialData.startTime ?? "",
@@ -41,6 +43,8 @@ export default function EventForm({
       : {
           id: "",
           name: "",
+          slug: "",
+          url: "",
           info: "",
           headerImage: [""],
           startTime: "",
@@ -57,11 +61,26 @@ export default function EventForm({
         },
   );
 
+  // Optional: auto-generate slug from name
+  useEffect(() => {
+    const generated = formData.name
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .trim()
+      .replace(/\s+/g, "-");
+
+    setFormData((prev) => {
+      if (!prev.slug || prev.slug === generated) {
+        return { ...prev, slug: generated };
+      }
+      return prev;
+    });
+  }, [formData.name]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type } = e.target;
-
     const newValue =
       type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
 
@@ -132,6 +151,24 @@ export default function EventForm({
         placeholder="Event Name"
         className="input input-bordered w-full"
         value={formData.name}
+        onChange={handleChange}
+      />
+
+      <input
+        type="text"
+        name="slug"
+        placeholder="Slug (required)"
+        className="input input-bordered w-full"
+        value={formData.slug}
+        onChange={handleChange}
+      />
+
+      <input
+        type="text"
+        name="url"
+        placeholder="External URL (optional)"
+        className="input input-bordered w-full"
+        value={formData.url}
         onChange={handleChange}
       />
 

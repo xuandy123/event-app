@@ -16,7 +16,7 @@ export default function FeaturedEventCard({ event }: Props) {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push(`/events/${event.id}`);
+    router.push(`/events/${event.slug}`);
   };
 
   return (
@@ -45,7 +45,7 @@ export default function FeaturedEventCard({ event }: Props) {
           <div className="flex flex-col">
             <h2 className="card-title">{event.name}</h2>
             {event.venue && (
-              <p className="text-sm text-neutral font-semibold">
+              <p className="text-sm text-secondary font-semibold">
                 {event.venue}
               </p>
             )}

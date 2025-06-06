@@ -17,6 +17,8 @@ export type EventFormData = {
   expect: { title: string; description: string }[];
   featured: boolean;
   venue: string;
+  url: string;
+  slug: string;
 };
 
 export const SubscribeRequest = z.object({
