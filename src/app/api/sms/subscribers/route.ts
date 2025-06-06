@@ -31,7 +31,6 @@ export const POST = executeApi<
           from: process.env.TWILIO_TOLL_FREE_NUMBER,
           body: message,
         });
-        console.log(`Admin message sent to ${phone}`);
       } catch (err) {
         console.error(`Failed to send to admin ${phone}:`, err);
       }

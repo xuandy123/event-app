@@ -34,14 +34,11 @@ const SubscriptionForm: FC = () => {
       if (!res.ok) {
         throw new Error("Failed to subscribe");
       }
-
-      const data = await res.json();
       setSubmitted(true);
       setError("");
       (
         document.getElementById("subscription_modal") as HTMLDialogElement
       )?.close();
-      console.log("Subscribed user ID:", data.userId);
     } catch (err) {
       console.error(err);
       setError("Subscription failed. Please try again.");

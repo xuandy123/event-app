@@ -13,8 +13,6 @@ export const POST = executePublicApi<
   typeof GetEventBySlugRequest
 >(GetEventBySlugRequest, async (_req, body) => {
   const { slug } = body;
-  console.log("slug", slug);
-
   const event = await prisma.events.findFirst({
     where: {
       slug,
