@@ -50,10 +50,6 @@ export default function EventsPage() {
           {/* You can format the current date here as well */}
           {getWeekOfText()}
         </h1>
-        <p className="text-lg text-gray-600 leading-relaxed">
-          🐐 This week is packed with adorable baby goats, pop-ups, and of
-          course Mother’s Day festivities! 👇
-        </p>
       </div>
 
       {loading ? (
