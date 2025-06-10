@@ -13,7 +13,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("/api/events/listall/", {
+        const response = await fetch("/api/admin/listall/", {
           method: "POST",
           body: JSON.stringify({}),
         });

@@ -103,4 +103,7 @@ model Events {
   venue            String?
   slug             String   @unique
   url              String?
+  createdAt        DateTime @default(now())
+  live             Boolean @default(false)
+  archive          Boolean @default(false)
 }

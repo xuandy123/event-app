@@ -19,6 +19,8 @@ export type EventFormData = {
   venue: string;
   url: string;
   slug: string;
+  live: boolean;
+  archive: boolean;
 };
 
 export const SubscribeRequest = z.object({
@@ -59,7 +61,12 @@ export interface CreateEventResponse {
   eventId?: string;
 }
 
-export const GetEventsRequest = z.object({});
+export const GetEventsRequest = z.object({
+  live: z.boolean(),
+  archive: z.boolean(),
+});
+
+export const GetEventsAdminRequest = z.object({});
 
 export type GetEventsResponse = {
   events: Events[];

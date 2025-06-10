@@ -22,6 +22,8 @@ const UpsertEventRequest = z.object({
   expect: z.any(), // Consider tightening this schema
   featured: z.boolean(),
   venue: z.string(),
+  live: z.boolean(),
+  archive: z.boolean(),
 });
 
 export const POST = executeApi<CreateEventResponse, typeof UpsertEventRequest>(
@@ -44,6 +46,8 @@ export const POST = executeApi<CreateEventResponse, typeof UpsertEventRequest>(
       expect: body.expect,
       featured: body.featured,
       venue: body.venue,
+      live: body.live,
+      archive: body.archive,
     };
 
     let event;

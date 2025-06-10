@@ -13,7 +13,10 @@ export default function EventsPage() {
       try {
         const response = await fetch("/api/events/listall/", {
           method: "POST",
-          body: JSON.stringify({}),
+          body: JSON.stringify({
+            live: true,
+            archive: false,
+          }),
         });
         const data = await response.json();
         setEvents(data.data.events || []);

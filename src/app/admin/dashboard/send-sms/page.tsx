@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 
 const emojis = ["😀", "🎉", "❤️", "🚀", "🔥", "👍", "😎", "💬", "📱"];
+const CHARACTER_LIMIT = 800;
 
 export default function SendSmsPage() {
   const [message, setMessage] = useState("");
@@ -77,6 +78,17 @@ export default function SendSmsPage() {
                 ))}
               </div>
             )}
+
+            {/* Character count display */}
+            <div
+              className={`text-sm mt-1 text-right ${
+                message.length > CHARACTER_LIMIT
+                  ? "text-red-500"
+                  : "text-gray-500"
+              }`}
+            >
+              {message.length} / {CHARACTER_LIMIT}
+            </div>
           </div>
 
           {/* Admin Only Toggle */}

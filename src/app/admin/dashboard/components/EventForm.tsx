@@ -39,6 +39,8 @@ export default function EventForm({
           })) ?? [{ title: "", description: "" }],
           featured: initialData.featured ?? false,
           venue: initialData.venue ?? "",
+          live: initialData.live ?? false,
+          archive: initialData.archive ?? false,
         }
       : {
           id: "",
@@ -58,6 +60,8 @@ export default function EventForm({
           expect: [{ title: "", description: "" }],
           featured: false,
           venue: "",
+          live: false,
+          archive: false,
         },
   );
 
@@ -315,6 +319,31 @@ export default function EventForm({
         >
           + Add Expectation
         </button>
+      </div>
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          name="live"
+          checked={formData.live}
+          onChange={handleChange}
+          className="checkbox"
+        />
+        <label htmlFor="live" className="label-text">
+          Live
+        </label>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          name="archive"
+          checked={formData.archive}
+          onChange={handleChange}
+          className="checkbox"
+        />
+        <label htmlFor="archive" className="label-text">
+          Archive
+        </label>
       </div>
 
       <button type="submit" className="btn btn-primary w-full">
