@@ -61,7 +61,7 @@ export default function ArchivedEvents() {
     (acc, event) => {
       const date = parseISO(event.createdAt); // or new Date(event.startDate)
       const weekStart = format(
-        startOfWeek(date, { weekStartsOn: 0 }),
+        startOfWeek(date, { weekStartsOn: 1 }),
         "MMMM d, yyyy",
       ); // Sunday
       if (!acc[weekStart]) acc[weekStart] = [];
