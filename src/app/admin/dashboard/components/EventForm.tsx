@@ -41,6 +41,7 @@ export default function EventForm({
           venue: initialData.venue ?? "",
           live: initialData.live ?? false,
           archive: initialData.archive ?? false,
+          createdAt: initialData.createdAt ?? "",
         }
       : {
           id: "",
@@ -62,6 +63,7 @@ export default function EventForm({
           venue: "",
           live: false,
           archive: false,
+          createdAt: "",
         },
   );
 

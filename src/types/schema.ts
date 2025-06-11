@@ -21,6 +21,7 @@ export type EventFormData = {
   slug: string;
   live: boolean;
   archive: boolean;
+  createdAt: string;
 };
 
 export const SubscribeRequest = z.object({
