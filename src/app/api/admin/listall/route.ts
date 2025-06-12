@@ -8,7 +8,6 @@ export const POST = executePublicApi<
 >(GetEventsAdminRequest, async () => {
   const events = await prisma.events.findMany({
     where: {
-      live: true,
       archive: false,
     },
     orderBy: { startTime: "desc" },

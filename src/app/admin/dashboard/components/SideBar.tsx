@@ -57,7 +57,7 @@ const ResponsiveDrawer: React.FC<ResponsiveDrawerProps> = ({ children }) => {
                     <li>
                       <a href="/admin/dashboard">
                         <CalendarClock />
-                        Live Events
+                        Current Events
                       </a>
                     </li>
                     <li>
